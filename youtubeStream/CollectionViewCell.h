@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol CollectionViewCellDelegate <NSObject>
+
+-(void)videoClickedAtIndexPath:(NSIndexPath *)indexPath;
+
+@end
+
 @interface CollectionViewCell : UICollectionViewCell
+
+@property (weak, nonatomic) IBOutlet UIImageView *trainImage;
+@property (weak, nonatomic) IBOutlet UIImageView *videoImage;
+@property (weak, nonatomic) IBOutlet UIImageView *playImage;
+- (IBAction)playButtonClicked:(id)sender;
+@property (nonatomic) NSIndexPath *indexPath;
+@property (nonatomic) id<CollectionViewCellDelegate> delegate;
 
 @end

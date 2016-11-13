@@ -14,4 +14,7 @@
     // Initialization code
 }
 
+- (IBAction)playButtonClicked:(id)sender {
+    [self.delegate videoClickedAtIndexPath:self.indexPath];
+}
 @end
