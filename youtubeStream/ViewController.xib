@@ -28,12 +28,12 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="guQ-Yn-sJj">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="guQ-Yn-sJj" userLabel="Top View">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
                     <animations/>
                     <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3V2-x2-h2z">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3V2-x2-h2z" userLabel="Bottom View">
                     <rect key="frame" x="0.0" y="510" width="320" height="58"/>
                     <animations/>
                     <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>

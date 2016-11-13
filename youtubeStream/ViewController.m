@@ -11,11 +11,14 @@
 #import <AFNetworking/AFNetworking.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <XCDYouTubeKit/XCDYouTubeKit.h>
+#import "VideoViewController.h"
+
 
 @interface ViewController ()<UICollectionViewDataSource, UICollectionViewDelegate,CollectionViewCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) NSMutableArray *allData;
+@property (weak, nonatomic) IBOutlet UIView *videoPlayingView;
 
 @end
 
@@ -142,21 +145,29 @@
 
 - (void) playVideo
 {
-    XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"3xqqj9o7TgA"];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerPlaybackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer];
-    [self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
+//    XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"3xqqj9o7TgA"];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerPlaybackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer];
+//    [self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
+
+//    XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"3xqqj9o7TgA"];
+//    [videoPlayerViewController presentInView:self.videoPlayingView];
+//    [videoPlayerViewController.moviePlayer play];
+    VideoViewController *videoVC = [[VideoViewController alloc]initWithNibName:@"VideoViewController" bundle:nil];
+    [self presentViewController:videoVC animated:YES completion:nil];
+
+
 }
 
-- (void) moviePlayerPlaybackDidFinish:(NSNotification *)notification
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:notification.object];
-    MPMovieFinishReason finishReason = [notification.userInfo[MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] integerValue];
-    if (finishReason == MPMovieFinishReasonPlaybackError)
-    {
-        NSError *error = notification.userInfo[XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey];
-        // Handle error
-    }
-}
+//- (void) moviePlayerPlaybackDidFinish:(NSNotification *)notification
+//{
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:notification.object];
+//    MPMovieFinishReason finishReason = [notification.userInfo[MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] integerValue];
+//    if (finishReason == MPMovieFinishReasonPlaybackError)
+//    {
+//        NSError *error = notification.userInfo[XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey];
+//        // Handle error
+//    }
+//}
 
 
 @end
