@@ -114,8 +114,7 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath  {
-    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:self.indexPath.row + 1 inSection:1];
-    self.indexPath = newIndexPath;
+
     NSMutableDictionary *dict = [self.allData objectAtIndex:indexPath.row + 4 + (self.indexPath.row+1)];
     NSString *title = [dict objectForKey:@"title"];
     NSString *url = [dict objectForKey:@"url"];
@@ -136,6 +135,8 @@
             }
         }
     }
+    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:self.indexPath.row + 2 inSection:1];
+    self.indexPath = newIndexPath;
     [self playVideo];
     [self.collectionView reloadData];
 
