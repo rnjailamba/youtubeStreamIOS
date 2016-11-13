@@ -22,5 +22,6 @@
 - (IBAction)playButtonClicked:(id)sender;
 @property (nonatomic) NSIndexPath *indexPath;
 @property (nonatomic) id<CollectionViewCellDelegate> delegate;
+@property (nonatomic) NSString *videoId;
 
 @end

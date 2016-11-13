@@ -10,6 +10,7 @@
 #import "CollectionViewCell.h"
 #import <AFNetworking/AFNetworking.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <XCDYouTubeKit/XCDYouTubeKit.h>
 
 @interface ViewController ()<UICollectionViewDataSource, UICollectionViewDelegate,CollectionViewCellDelegate>
 
@@ -103,7 +104,6 @@
             NSString *title = [dict objectForKey:@"title"];
             NSString *url = [dict objectForKey:@"url"];
             NSLog(@"data: %@ %@", title,url);
-            
             NSArray *comp1 = [url componentsSeparatedByString:@"?"];
             NSString *query = [comp1 lastObject];
             NSArray *queryElements = [query componentsSeparatedByString:@"&"];
@@ -118,7 +118,7 @@
                         NSString *finalImageUrl = [NSString stringWithFormat:@"https://img.youtube.com/vi/%@/0.jpg",value];
                         [cell.videoImage sd_setImageWithURL:[NSURL URLWithString:finalImageUrl] placeholderImage:nil];
                         cell.videoImage.alpha = 1;
-
+                        cell.videoId = value;
                     }
                 }
             }
@@ -136,7 +136,26 @@
 #pragma CollectionViewCellDelegate
 
 -(void)videoClickedAtIndexPath:(NSIndexPath *)indexPath{
+    [self playVideo];
     
+}
+
+- (void) playVideo
+{
+    XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"3xqqj9o7TgA"];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerPlaybackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer];
+    [self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
+}
+
+- (void) moviePlayerPlaybackDidFinish:(NSNotification *)notification
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:notification.object];
+    MPMovieFinishReason finishReason = [notification.userInfo[MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] integerValue];
+    if (finishReason == MPMovieFinishReasonPlaybackError)
+    {
+        NSError *error = notification.userInfo[XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey];
+        // Handle error
+    }
 }
 
 
