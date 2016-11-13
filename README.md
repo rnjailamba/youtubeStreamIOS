@@ -16,4 +16,5 @@ Get data from http://54.179.149.254/api/v1/content/listing/41/
 5. Keep all the videos watched in the database and display them with there title as card view on a separate screen.</p>
 
 
-![image](http://i.imgur.com/E8z25Bl.gif)
+![image](http://i.imgur.com/E8z25Bl.gif)    
+![image](http://i.imgur.com/uk0SnWh.gif)
