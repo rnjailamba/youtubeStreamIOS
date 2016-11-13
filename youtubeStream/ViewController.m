@@ -12,6 +12,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <XCDYouTubeKit/XCDYouTubeKit.h>
 #import "VideoViewController.h"
+#import "WatchedController.h"
 
 
 @interface ViewController ()<UICollectionViewDataSource, UICollectionViewDelegate,CollectionViewCellDelegate>
@@ -19,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) NSMutableArray *allData;
 @property (weak, nonatomic) IBOutlet UIView *videoPlayingView;
+- (IBAction)watchedClicked:(id)sender;
 
 @end
 
@@ -31,6 +33,12 @@
     [self collectionViewStuff];
     [self registerCells];
     [self fetchData];
+//    [self clearData];
+}
+
+-(void)clearData{
+    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
 }
 
 -(void)initData{
@@ -109,6 +117,7 @@
                         NSString *finalImageUrl = [NSString stringWithFormat:@"https://img.youtube.com/vi/%@/0.jpg",value];
                         [cell.videoImage sd_setImageWithURL:[NSURL URLWithString:finalImageUrl] placeholderImage:nil];
                         cell.videoImage.alpha = 1;
+                        cell.videoTitle = title;
                         cell.videoId = value;
                     }
                 }
@@ -126,13 +135,35 @@
 
 #pragma CollectionViewCellDelegate
 
--(void)videoClickedAtIndexPath:(NSIndexPath *)indexPath andVideoId:(NSString *)videoID{
+-(void)videoClickedAtIndexPath:(NSIndexPath *)indexPath andVideoId:(NSString *)videoID andTitle:(NSString *)title{
     VideoViewController *videoVC = [[VideoViewController alloc]initWithNibName:@"VideoViewController" bundle:nil];
     videoVC.videoId = videoID;
     videoVC.allData = self.allData;
     videoVC.indexPath = indexPath;
+    
+    NSMutableDictionary *dict = [NSMutableDictionary new];
+    [dict setObject:title forKey:@"title"];
+    [dict setObject:videoID forKey:@"id"];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *arrData = [userDefaults mutableArrayValueForKey:@"watched"];
+    if(arrData.count != 0){
+        [arrData addObject:dict];
+        NSMutableArray *arr = [[NSMutableArray alloc] initWithArray:arrData];
+        [userDefaults setObject:arr forKey:@"watched"];
+    }
+    else{
+        NSMutableArray *arr = [NSMutableArray new];
+        [arr addObject:dict];
+        [userDefaults setObject:arr forKey:@"watched"];
+    }
+    [userDefaults synchronize];
     [self presentViewController:videoVC animated:YES completion:nil];
 }
 
 
+- (IBAction)watchedClicked:(id)sender {
+    WatchedController *watchVC = [[WatchedController alloc]initWithNibName:@"WatchedController" bundle:nil];
+    [self presentViewController:watchVC animated:YES completion:nil];
+    
+}
 @end

@@ -35,9 +35,26 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3V2-x2-h2z" userLabel="Bottom View">
                     <rect key="frame" x="0.0" y="510" width="320" height="58"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SiX-Se-9VK">
+                            <rect key="frame" x="60" y="14" width="200" height="30"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="200" id="xFj-Un-u3y"/>
+                            </constraints>
+                            <state key="normal" title="Watched Videos">
+                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </state>
+                            <connections>
+                                <action selector="watchedClicked:" destination="-1" eventType="touchUpInside" id="mAM-ew-r9L"/>
+                            </connections>
+                        </button>
+                    </subviews>
                     <animations/>
                     <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstItem="SiX-Se-9VK" firstAttribute="centerY" secondItem="3V2-x2-h2z" secondAttribute="centerY" id="4lZ-S9-fXx"/>
+                        <constraint firstItem="SiX-Se-9VK" firstAttribute="centerX" secondItem="3V2-x2-h2z" secondAttribute="centerX" id="VFq-HP-zfj"/>
                         <constraint firstAttribute="height" constant="58" id="jQD-5e-1e5"/>
                     </constraints>
                 </view>

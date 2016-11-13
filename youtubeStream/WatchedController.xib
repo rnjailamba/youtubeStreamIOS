@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WatchedController">
+            <connections>
+                <outlet property="collectionView" destination="tqF-eQ-4yZ" id="t1K-t6-dmk"/>
+                <outlet property="nothing" destination="oYD-wF-ZN0" id="DE0-Eu-wtc"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pG6-EZ-5t7">
+                    <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                    <animations/>
+                    <color key="backgroundColor" red="1" green="0.35699051069999999" blue="0.26239097830000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="Op6-wQ-bTE"/>
+                    </constraints>
+                    <state key="normal" title="CLOSE">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="closeClicked:" destination="-1" eventType="touchUpInside" id="KiR-Lc-6P0"/>
+                    </connections>
+                </button>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="tqF-eQ-4yZ">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.88794070510000001" green="0.88794070510000001" blue="0.88794070510000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="r5r-0M-jWc">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nothing Here!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYD-wF-ZN0">
+                    <rect key="frame" x="60" y="274" width="200" height="20.5"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="VWD-Oh-47V"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="pG6-EZ-5t7" secondAttribute="bottom" id="9WO-Mc-aXY"/>
+                <constraint firstItem="oYD-wF-ZN0" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="CB8-Fz-GjT"/>
+                <constraint firstItem="tqF-eQ-4yZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Cqp-no-kIZ"/>
+                <constraint firstAttribute="trailing" secondItem="tqF-eQ-4yZ" secondAttribute="trailing" id="CtA-Cc-9kx"/>
+                <constraint firstItem="pG6-EZ-5t7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="EQZ-38-6Yj"/>
+                <constraint firstItem="oYD-wF-ZN0" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="QQ9-Le-QcM"/>
+                <constraint firstItem="tqF-eQ-4yZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="X4Y-J2-lvG"/>
+                <constraint firstItem="pG6-EZ-5t7" firstAttribute="top" secondItem="tqF-eQ-4yZ" secondAttribute="bottom" id="ch8-qr-BJy"/>
+                <constraint firstAttribute="trailing" secondItem="pG6-EZ-5t7" secondAttribute="trailing" id="eGt-tU-YWN"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>

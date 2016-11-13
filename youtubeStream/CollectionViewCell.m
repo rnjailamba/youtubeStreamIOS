@@ -15,6 +15,6 @@
 }
 
 - (IBAction)playButtonClicked:(id)sender {
-    [self.delegate videoClickedAtIndexPath:self.indexPath andVideoId:self.videoId];
+    [self.delegate videoClickedAtIndexPath:self.indexPath andVideoId:self.videoId andTitle:self.videoTitle];
 }
 @end

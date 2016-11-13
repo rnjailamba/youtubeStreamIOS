@@ -129,6 +129,23 @@
             NSString *value = (keyVal.count == 2) ? [keyVal lastObject] : nil;
             if([variableKey isEqualToString:@"v"]){
                 self.videoId = value;
+                NSMutableDictionary *dict = [NSMutableDictionary new];
+                [dict setObject:title forKey:@"title"];
+                [dict setObject:value forKey:@"id"];
+                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                NSMutableArray *arrData = [userDefaults mutableArrayValueForKey:@"watched"];
+                if(arrData.count != 0){
+                    [arrData addObject:dict];
+                    NSMutableArray *arr = [[NSMutableArray alloc] initWithArray:arrData];
+                    [userDefaults setObject:arr forKey:@"watched"];
+                }
+                else{
+                    NSMutableArray *arr = [NSMutableArray new];
+                    [arr addObject:dict];
+                    [userDefaults setObject:arr forKey:@"watched"];
+                }
+                [userDefaults synchronize];
+
             }
         }
     }
