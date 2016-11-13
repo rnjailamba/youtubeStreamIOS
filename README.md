@@ -14,3 +14,6 @@ Get data from http://54.179.149.254/api/v1/content/listing/41/
 3. On click of video , run the video as full screen <br>
 4** On click anywhere in the video screen in point no 3, display the next 4 video as thumbnail. The main video will be resized and from beneath a space containing the next 4 videos will appear. <br>
 5. Keep all the videos watched in the database and display them with there title as card view on a separate screen.</p>
+
+
+![image](http://i.imgur.com/E8z25Bl.gif)
