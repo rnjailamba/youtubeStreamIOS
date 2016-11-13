@@ -16,6 +16,8 @@
 		635352851DD830ED003B5320 /* VideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635352831DD830ED003B5320 /* VideoViewController.m */; };
 		635352861DD830ED003B5320 /* VideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 635352841DD830ED003B5320 /* VideoViewController.xib */; };
 		635352881DD835B8003B5320 /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 635352871DD835B8003B5320 /* cross.png */; };
+		63A4B76B1DD85E4500894170 /* RecommendViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A4B7691DD85E4500894170 /* RecommendViewCell.m */; };
+		63A4B76C1DD85E4500894170 /* RecommendViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63A4B76A1DD85E4500894170 /* RecommendViewCell.xib */; };
 		63FEA9321DD724130096B055 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FEA9311DD724130096B055 /* main.m */; };
 		63FEA9351DD724130096B055 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FEA9341DD724130096B055 /* AppDelegate.m */; };
 		63FEA9381DD724130096B055 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FEA9371DD724130096B055 /* ViewController.m */; };
@@ -36,6 +38,9 @@
 		635352831DD830ED003B5320 /* VideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoViewController.m; sourceTree = "<group>"; };
 		635352841DD830ED003B5320 /* VideoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoViewController.xib; sourceTree = "<group>"; };
 		635352871DD835B8003B5320 /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
+		63A4B7681DD85E4500894170 /* RecommendViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendViewCell.h; sourceTree = "<group>"; };
+		63A4B7691DD85E4500894170 /* RecommendViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendViewCell.m; sourceTree = "<group>"; };
+		63A4B76A1DD85E4500894170 /* RecommendViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendViewCell.xib; sourceTree = "<group>"; };
 		63FEA92D1DD724130096B055 /* youtubeStream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = youtubeStream.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63FEA9311DD724130096B055 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		63FEA9331DD724130096B055 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -110,6 +115,9 @@
 				635352821DD830ED003B5320 /* VideoViewController.h */,
 				635352831DD830ED003B5320 /* VideoViewController.m */,
 				635352841DD830ED003B5320 /* VideoViewController.xib */,
+				63A4B7681DD85E4500894170 /* RecommendViewCell.h */,
+				63A4B7691DD85E4500894170 /* RecommendViewCell.m */,
+				63A4B76A1DD85E4500894170 /* RecommendViewCell.xib */,
 			);
 			path = youtubeStream;
 			sourceTree = "<group>";
@@ -200,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				635352881DD835B8003B5320 /* cross.png in Resources */,
+				63A4B76C1DD85E4500894170 /* RecommendViewCell.xib in Resources */,
 				635352811DD7EA15003B5320 /* play.png in Resources */,
 				63FEA9401DD724130096B055 /* LaunchScreen.storyboard in Resources */,
 				6353527E1DD7E501003B5320 /* back.png in Resources */,
@@ -267,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				635352851DD830ED003B5320 /* VideoViewController.m in Sources */,
+				63A4B76B1DD85E4500894170 /* RecommendViewCell.m in Sources */,
 				63FEA9381DD724130096B055 /* ViewController.m in Sources */,
 				63FEA9351DD724130096B055 /* AppDelegate.m in Sources */,
 				635352791DD7E2E3003B5320 /* CollectionViewCell.m in Sources */,

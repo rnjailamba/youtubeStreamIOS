@@ -127,34 +127,12 @@
 #pragma CollectionViewCellDelegate
 
 -(void)videoClickedAtIndexPath:(NSIndexPath *)indexPath andVideoId:(NSString *)videoID{
-    [self playVideo:videoID];
-    
-}
-
-- (void) playVideo:(NSString *)videoID
-{
-//    XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"3xqqj9o7TgA"];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerPlaybackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer];
-//    [self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
-
-
     VideoViewController *videoVC = [[VideoViewController alloc]initWithNibName:@"VideoViewController" bundle:nil];
     videoVC.videoId = videoID;
+    videoVC.allData = self.allData;
+    videoVC.indexPath = indexPath;
     [self presentViewController:videoVC animated:YES completion:nil];
-
-
 }
-
-//- (void) moviePlayerPlaybackDidFinish:(NSNotification *)notification
-//{
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:notification.object];
-//    MPMovieFinishReason finishReason = [notification.userInfo[MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] integerValue];
-//    if (finishReason == MPMovieFinishReasonPlaybackError)
-//    {
-//        NSError *error = notification.userInfo[XCDMoviePlayerPlaybackDidFinishErrorUserInfoKey];
-//        // Handle error
-//    }
-//}
 
 
 @end

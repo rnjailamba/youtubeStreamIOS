@@ -8,8 +8,11 @@
 
 #import "VideoViewController.h"
 #import <XCDYouTubeKit/XCDYouTubeKit.h>
+#import "RecommendViewCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
-@interface VideoViewController ()
+
+@interface VideoViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *videoView;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -34,6 +37,9 @@
 
 -(void)initProps{
     self.tapped = false;
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    [self.collectionView registerNib:[UINib nibWithNibName:@"RecommendViewCell" bundle:nil  ] forCellWithReuseIdentifier:@"cell"];
 }
 
 -(void)setViewBounds{
@@ -47,21 +53,6 @@
         [videoPlayerViewController presentInView:self.videoView];
         [videoPlayerViewController.moviePlayer play];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)closeButtonClicked:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -78,4 +69,76 @@
     self.tapped = !self.tapped;
 
 }
+
+#pragma UICollectionViewDelegate
+
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return 6;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellIdentifier = @"cell";
+    RecommendViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    if(self.allData.count > indexPath.row + 4){
+        NSMutableDictionary *dict = [self.allData objectAtIndex:indexPath.row + 4 + (self.indexPath.row+1)];
+        NSString *title = [dict objectForKey:@"title"];
+        NSString *url = [dict objectForKey:@"url"];
+        NSLog(@"data: %@ %@", title,url);
+        NSArray *comp1 = [url componentsSeparatedByString:@"?"];
+        NSString *query = [comp1 lastObject];
+        NSArray *queryElements = [query componentsSeparatedByString:@"&"];
+        for (NSString *element in queryElements) {
+            NSArray *keyVal = [element componentsSeparatedByString:@"="];
+            if (keyVal.count > 0) {
+                NSString *variableKey = [keyVal objectAtIndex:0];
+                NSString *value = (keyVal.count == 2) ? [keyVal lastObject] : nil;
+                if([variableKey isEqualToString:@"v"]){
+                    NSLog(@"value: %@", value);
+                    //                        http://img.youtube.com/vi/lNmXqinHhDY/0.jpg
+                    NSString *finalImageUrl = [NSString stringWithFormat:@"https://img.youtube.com/vi/%@/0.jpg",value];
+                    [cell.videoImage sd_setImageWithURL:[NSURL URLWithString:finalImageUrl] placeholderImage:nil];
+                    cell.videoId = value;
+                }
+            }
+        }
+    }
+    return cell;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return CGSizeMake(150, 100);
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath  {
+    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:self.indexPath.row + 1 inSection:1];
+    self.indexPath = newIndexPath;
+    NSMutableDictionary *dict = [self.allData objectAtIndex:indexPath.row + 4 + (self.indexPath.row+1)];
+    NSString *title = [dict objectForKey:@"title"];
+    NSString *url = [dict objectForKey:@"url"];
+    NSLog(@"data: %@ %@", title,url);
+    NSArray *comp1 = [url componentsSeparatedByString:@"?"];
+    NSString *query = [comp1 lastObject];
+    NSArray *queryElements = [query componentsSeparatedByString:@"&"];
+    for (NSString *element in queryElements) {
+        NSArray *keyVal = [element componentsSeparatedByString:@"="];
+        if (keyVal.count > 0) {
+            NSString *variableKey = [keyVal objectAtIndex:0];
+            NSString *value = (keyVal.count == 2) ? [keyVal lastObject] : nil;
+            if([variableKey isEqualToString:@"v"]){
+                NSLog(@"value: %@", value);
+                //                        http://img.youtube.com/vi/lNmXqinHhDY/0.jpg
+                NSString *finalImageUrl = [NSString stringWithFormat:@"https://img.youtube.com/vi/%@/0.jpg",value];
+                self.videoId = value;
+            }
+        }
+    }
+    [self playVideo];
+    [self.collectionView reloadData];
+
+}
+
 @end
