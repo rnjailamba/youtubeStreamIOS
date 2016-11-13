@@ -128,14 +128,11 @@
             NSString *variableKey = [keyVal objectAtIndex:0];
             NSString *value = (keyVal.count == 2) ? [keyVal lastObject] : nil;
             if([variableKey isEqualToString:@"v"]){
-                NSLog(@"value: %@", value);
-                //                        http://img.youtube.com/vi/lNmXqinHhDY/0.jpg
-                NSString *finalImageUrl = [NSString stringWithFormat:@"https://img.youtube.com/vi/%@/0.jpg",value];
                 self.videoId = value;
             }
         }
     }
-    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:self.indexPath.row + 2 inSection:1];
+    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:self.indexPath.row + indexPath.row inSection:1];
     self.indexPath = newIndexPath;
     [self playVideo];
     [self.collectionView reloadData];
