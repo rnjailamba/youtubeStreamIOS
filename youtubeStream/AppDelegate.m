@@ -18,7 +18,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+    [UIApplication sharedApplication].statusBarHidden = true;
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = [[UINavigationController alloc]initWithRootViewController:[[ViewController alloc]initWithNibName:@"ViewController" bundle:nil]];
     [self.window makeKeyAndVisible];

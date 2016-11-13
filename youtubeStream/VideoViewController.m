@@ -7,12 +7,17 @@
 //
 
 #import "VideoViewController.h"
+#import <XCDYouTubeKit/XCDYouTubeKit.h>
 
 @interface VideoViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *videoView;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 - (IBAction)closeButtonClicked:(id)sender;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *videoViewHt;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *recommendedHt;
+- (IBAction)videoTapped:(id)sender;
+@property (nonatomic) BOOL tapped;
 
 @end
 
@@ -20,7 +25,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initProps];
+    [self setViewBounds];
+    [self playVideo];
+    
     // Do any additional setup after loading the view from its nib.
+}
+
+-(void)initProps{
+    self.tapped = false;
+}
+
+-(void)setViewBounds{
+    self.view.frame = [[UIScreen mainScreen] bounds];
+    self.videoViewHt.constant = self.view.frame.size.height - 50;
+    self.recommendedHt.constant = 0;
+}
+
+-(void)playVideo{
+        XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:self.videoId];
+        [videoPlayerViewController presentInView:self.videoView];
+        [videoPlayerViewController.moviePlayer play];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,5 +65,17 @@
 
 - (IBAction)closeButtonClicked:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (IBAction)videoTapped:(id)sender {
+    if(self.tapped == false){
+        self.videoViewHt.constant = self.view.frame.size.height - 150;
+        self.recommendedHt.constant = 100;
+    }
+    else{
+        self.videoViewHt.constant = self.view.frame.size.height - 50;
+        self.recommendedHt.constant = 0;
+    }
+    self.tapped = !self.tapped;
+
 }
 @end

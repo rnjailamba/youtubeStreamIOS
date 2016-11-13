@@ -10,7 +10,7 @@
 
 @protocol CollectionViewCellDelegate <NSObject>
 
--(void)videoClickedAtIndexPath:(NSIndexPath *)indexPath;
+-(void)videoClickedAtIndexPath:(NSIndexPath *)indexPath andVideoId:(NSString *)videoID;
 
 @end
 

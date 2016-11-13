@@ -39,18 +39,6 @@
 
 -(void)fetchData{
     
-    NSDictionary *parameters = @{@"format":@"json",
-                                 @"action":@"query",
-                                 @"generator":@"search",
-                                 @"gsrnamespace":@"0",
-                                 @"gsrsearch":@"dsds",
-                                 @"gsrlimit":@"10",
-                                 @"prop":@"pageimages|extracts",
-                                 @"pilimit":@"max",
-                                 @"exintro":@"",
-                                 @"explaintext":@"",
-                                 @"exlimit":@"max",
-                                 @"exsentences":@"1"};
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     [manager GET:@"https://api.myjson.com/bins/42nrw.json" parameters:nil success:^(NSURLSessionTask *task, id responseObject) {
@@ -138,21 +126,20 @@
 
 #pragma CollectionViewCellDelegate
 
--(void)videoClickedAtIndexPath:(NSIndexPath *)indexPath{
-    [self playVideo];
+-(void)videoClickedAtIndexPath:(NSIndexPath *)indexPath andVideoId:(NSString *)videoID{
+    [self playVideo:videoID];
     
 }
 
-- (void) playVideo
+- (void) playVideo:(NSString *)videoID
 {
 //    XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"3xqqj9o7TgA"];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerPlaybackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:videoPlayerViewController.moviePlayer];
 //    [self presentMoviePlayerViewControllerAnimated:videoPlayerViewController];
 
-//    XCDYouTubeVideoPlayerViewController *videoPlayerViewController = [[XCDYouTubeVideoPlayerViewController alloc] initWithVideoIdentifier:@"3xqqj9o7TgA"];
-//    [videoPlayerViewController presentInView:self.videoPlayingView];
-//    [videoPlayerViewController.moviePlayer play];
+
     VideoViewController *videoVC = [[VideoViewController alloc]initWithNibName:@"VideoViewController" bundle:nil];
+    videoVC.videoId = videoID;
     [self presentViewController:videoVC animated:YES completion:nil];
 
 
